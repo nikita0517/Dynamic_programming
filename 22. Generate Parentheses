@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+         vector<string> result ;
+        string st{};
+        numofParenthesis(result,st,n,n,n);
+       //generateParenthesis(result, "", 0, 0, n);
+        return result;
+    }
+
+     void numofParenthesis(vector<string> &result, string s, int open, int close, int n) {
+        if (open==0 && close==0) {
+            result.push_back(s);
+            return;
+        }
+        if (open!=0) {
+            string op=s;
+            op.push_back('(');
+            numofParenthesis(result, op, open-1, close, n);
+        }
+        if (close > open) {
+            string op1=s;
+            op1.push_back(')');
+            numofParenthesis(result, op1, open, close-1, n);
+        }
+    }
+
+};
