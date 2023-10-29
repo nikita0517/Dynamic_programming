@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int func(vector<int>& nums, int target,int ind){
+        if(ind==0)
+            return target==0;
+        if(target==0)
+            return 0;
+        int pick=0;
+        if(target>=nums[ind])
+            pick=1+func(nums,target-nums[ind],ind-1);
+        int notpick=func(nums,target,ind-1);
+        return max(pick,notpick);
+    }
+    int lengthOfLongestSubsequence(vector<int>& nums, int target) {
+        int n=nums.size();
+        return func(nums,target,n-1);
+    }
+};
