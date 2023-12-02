@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int numSplits(string s) {
+      vector<int>l(26,0);
+      for(int i=0;i<s.length();i++)
+      l[s[i]-'a']++;
+      int ans=0;
+      map<char,int>mp;
+      for(int i=0;i<s.size();i++){
+          mp[s[i]]++;
+          l[s[i]-'a']--;
+          int cnt=0;
+          for(int j=0;j<l.size();j++){
+              if(l[j]>0)
+              cnt++;
+          }
+          if(cnt==mp.size())
+          ans++;
+      }
+      return ans;
+    }
+};
